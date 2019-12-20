@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%><%@taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<script type="text/javascript">
+function checkForm(){
+	var name=document.getElementsByName("factory.name")[0].value;
+	var phone=document.getElementsByName("factory.linkman")[0].value;
+	var ident=document.getElementsByName("factory.phone")[0].value;
+	if(name==null||name==""){alert("厂商不能为空!");return false;}
+	if(phone==null||phone==""){alert("姓名不能为空!");return false;}
+	if(ident==null||ident==""){alert("电话不能为空!");return false;}
+	return true;
+}
+</script>
+<body>
+
+	<form action="factoryUpdate.action" method="post" onsubmit="return checkForm()">
+		<input type="hidden" name="factory.id" value="${factory.id}"/>
+		厂商：<input type="text" name="factory.name" value="${factory.name}"/><font color="red">*</font><br>
+		姓名：<input type="text" name="factory.linkman" value="${factory.linkman}"/><font color="red">*</font><br>
+		电话：<input type="text" name="factory.phone" value="${factory.phone}"/><font color="red">*</font><br>
+		地址：<input type="text" name="factory.address" value="${factory.address}"/><br>
+		备注：<input type="text" name="factory.remark" value="${factory.remark}"/><br>
+		<input type="submit" value="确认修改"/>
+	</form>
+	
+</body>
+</html>
